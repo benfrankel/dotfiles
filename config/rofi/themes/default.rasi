@@ -1,0 +1,202 @@
+* {
+    invisible: #00000000;
+    
+    bg: #010204b0;
+    fg: #d9d9ffd9;
+    highlight: #00bcd4ff;
+    
+    normal-bg: @invisible;
+    normal-fg: @fg;
+    normal-alt-bg: @invisible;
+    normal-alt-fg: @fg;
+    normal-sel-bg: @invisible;
+    normal-sel-fg: @highlight;
+    
+    active-bg: @invisible;
+    active-fg: @fg;
+    active-alt-bg: @invisible;
+    active-alt-fg: @fg;
+    active-sel-bg: @invisible;
+    active-sel-fg: @highlight;
+    
+    urgent-bg: @invisible;
+    urgent-fg: @fg;
+    urgent-alt-bg: @invisible;
+    urgent-alt-fg: @fg;
+    urgent-sel-bg: @invisible;
+    urgent-sel-fg: @highlight;
+    
+    sep-color: @invisible;
+    
+    spacing: 0.5em;
+    background-color: @invisible;
+    border-color: @fg;
+}
+
+element {
+    padding: 1px;
+    cursor: pointer;
+    spacing: 5px;
+    border: 0;
+}
+
+element normal.normal {
+    background-color: @normal-bg;
+    text-color: @normal-fg;
+}
+
+element normal.urgent {
+    background-color: @urgent-bg;
+    text-color: @urgent-fg;
+}
+
+element normal.active {
+    background-color: @active-bg;
+    text-color: @active-fg;
+}
+
+element selected.normal {
+    background-color: @normal-sel-bg;
+    text-color: @normal-sel-fg;
+}
+
+element selected.urgent {
+    background-color: @urgent-sel-bg;
+    text-color: @urgent-sel-fg;
+}
+
+element selected.active {
+    background-color: @active-sel-bg;
+    text-color: @active-sel-fg;
+}
+
+element alternate.normal {
+    background-color: @normal-alt-bg;
+    text-color: @normal-alt-fg;
+}
+
+element alternate.urgent {
+    background-color: @urgent-alt-bg;
+    text-color: @urgent-alt-fg;
+}
+
+element alternate.active {
+    background-color: @active-alt-bg;
+    text-color: @active-alt-fg;
+}
+
+element-text {
+    background-color: @invisible;
+    cursor: inherit;
+    highlight: inherit;
+    text-color: inherit;
+}
+
+element-icon {
+    background-color: @invisible;
+    size: 1em;
+    cursor: inherit;
+    text-color: inherit;
+}
+
+window {
+    width: 100%;
+    padding: 100% 26%;
+    background-color: @bg;
+    border: 0;
+}
+
+mainbox {
+    padding: 0;
+    border: 0;
+}
+
+message {
+    padding: 1px;
+    border-color: @sep-color;
+    border: 2px dash 0 0;
+}
+
+textbox {
+    text-color: @fg;
+}
+
+listview {
+    padding: 2px 0 0;
+    scrollbar: false;
+    lines: 4;
+    border-color: @sep-color;
+    spacing: -20px;
+    fixed-height: 0;
+    border: 2px dash 0 0;
+}
+
+scrollbar {
+    width: 4px;
+    padding: 0;
+    handle-width: 8px;
+    border: 0;
+    handle-color: @normal-fg;
+}
+
+sidebar {
+    border-color: @sep-color;
+    border: 2px dash 0 0;
+}
+
+button {
+    cursor: pointer;
+    spacing: 0;
+    text-color: @normal-fg;
+}
+
+button selected {
+    background-color: @normal-sel-bg;
+    text-color: @normal-sel-fg;
+}
+
+num-filtered-rows {
+    expand: false;
+    text-color: @invisible;
+}
+
+num-rows {
+    expand: false;
+    text-color: @invisible;
+}
+
+textbox-num-sep {
+    expand: false;
+    str: "/";
+    text-color: @invisible;
+}
+
+inputbar {
+    padding: 1px;
+    spacing: 0;
+    text-color: @normal-fg;
+    children: [prompt, textbox-prompt-colon, entry, num-filtered-rows, textbox-num-sep, num-rows, case-indicator];
+}
+
+case-indicator {
+    spacing: 0;
+    text-color: @invisible;
+}
+
+entry {
+    text-color: @normal-fg;
+    cursor: text;
+    spacing: 0;
+}
+
+prompt {
+    spacing: 0;
+    text-color: @normal-fg;
+}
+
+textbox-prompt-colon {
+    margin: 0 0.3em 0 0;
+    expand: false;
+    str: ":";
+    text-color: inherit;
+}
