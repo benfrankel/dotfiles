@@ -1,3 +1,0 @@
-#!/bin/sh
-
-dot-glue --symbolic-link . "${HOME}/.emacs.d"

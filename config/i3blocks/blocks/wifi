@@ -16,8 +16,8 @@
 
 #------------------------------------------------------------------------
 
-echo ''
-echo ''
+echo ' '
+echo ' '
 
 interface="${BLOCK_INSTANCE:-$(iw dev | grep -m 1 '^\s*Interface .*$' | sed 's/\s*Interface //')}"
 

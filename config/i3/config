@@ -3,11 +3,12 @@
 #######################
 
 set $COLOR-PICKER gpick
+set $REMOTE-DESKTOP vncviewer "$(cat ~/desktop_ip)" -passwd ~/.vnc/passwd
 set $FILE-MANAGER thunar
 set $IMAGE-EDITOR gimp
 set $PAINT krita
 set $TERMINAL urxvtc
-set $TEXT-EDITOR emacsclient -c
+set $TEXT-EDITOR neovide
 set $VIDEO-PLAYER vlc
 set $WEB-BROWSER firefox
 
@@ -34,7 +35,7 @@ set $CU-BG  #ff3030
 set $CU-FG  #ffffff
 
 # Font for window titles
-font pango:FontAwesome, Ubuntu Sans 8
+font pango:Hack Nerd Font 8
 
 # Gaps around containers
 gaps inner 4
@@ -45,16 +46,16 @@ hide_edge_borders smart
 for_window [class="^.*"] border pixel 2
 
 # Workspace names
-set $WORKSPACE-1 "0: etc"
-set $WORKSPACE-2 "1: web"
-set $WORKSPACE-3 "2: msg"
-set $WORKSPACE-4 "3: pad"
-set $WORKSPACE-5 "4: dev"
-set $WORKSPACE-6 "5: say"
-set $WORKSPACE-7 "6: try"
-set $WORKSPACE-8 "7: art"
-set $WORKSPACE-9 "8: pro"
-set $WORKSPACE-0 "9: tmp"
+set $WORKSPACE-1 "0:  etc"
+set $WORKSPACE-2 "1:󰈹  web"
+set $WORKSPACE-3 "2:󰇮  msg"
+set $WORKSPACE-4 "3:  pad"
+set $WORKSPACE-5 "4:  dev"
+set $WORKSPACE-6 "5:  say"
+set $WORKSPACE-7 "6:  try"
+set $WORKSPACE-8 "7:  art"
+set $WORKSPACE-9 "8:  pro"
+set $WORKSPACE-0 "9:  tmp"
 
 # Window colors          BORDER      BACKGROUND  TEXT        INDICATOR    CHILD-BORDER
 client.focused           $CF-BG      $CF-BG      $CF-FG      $CF-BG       $CF-BG
@@ -86,7 +87,7 @@ bar
         binding_mode        $CU-BG       $CU-BG       $CU-FG
     }
 
-    font pango:FontAwesome, Ubuntu Mono 11
+    font pango:UbuntuMono Nerd Font 11
 
     position bottom
     workspace_buttons yes
@@ -108,7 +109,7 @@ set $ROFI rofi -modi \\"window,run,drun\\" -width 100 -lines 3 -font \\"Ubuntu M
 # General window    #
 for_window [class="^(.*)$"] title_format "   %title"
 # Web browser        #
-for_window [class="^([fF]irefox)$"] title_format "   %title"
+for_window [class="^([fF]irefox)$"] title_format " 󰈹  %title"
 for_window [class="^(Google-chrome|Chromium)$"] title_format "   %title"
 # Terminal          #
 for_window [class="^(Gnome-terminal|URxvt)$"] title_format "   %title"
@@ -132,7 +133,7 @@ for_window [class="^(feh|Eog)$"] title_format "   %title"
 # Document viewer   #
 for_window [class="^(Evince|okular)$"] title_format "   %title"
 # Text editor       #
-for_window [class="^(Emacs|Gedit|libreoffice-writer)$"] title_format "   %title"
+for_window [class="^(neovide|libreoffice-writer)$"] title_format "   %title"
 # Development tool  #
 for_window [class="^(jetbrains-.*)$"] title_format "   %title"
 # 3D modeling       #
@@ -219,16 +220,22 @@ set $mod Mod4
 #     SPEAKER     #
 bindsym XF86AudioRaiseVolume $SOUND-VOLUME-INC-MINOR
 bindsym XF86AudioLowerVolume $SOUND-VOLUME-DEC-MINOR
+bindsym $mod+XF86AudioRaiseVolume $SOUND-VOLUME-INC-MAJOR
+bindsym $mod+XF86AudioLowerVolume $SOUND-VOLUME-DEC-MAJOR
 bindsym $mod+F3 $SOUND-VOLUME-INC-MAJOR
 bindsym $mod+F2 $SOUND-VOLUME-DEC-MAJOR
 bindsym XF86AudioMute $SOUND-MUTE-TOGGLE
+bindsym $mod+XF86AudioMute $SOUND-MUTE-TOGGLE
 bindsym $mod+F1 $SOUND-MUTE-TOGGLE
 #   MICROPHONE    #
 bindsym XF86AudioMicMute $MIC-TOGGLE
+bindsym $mod+XF86AudioMicMute $MIC-TOGGLE
 bindsym $mod+F4 $MIC-TOGGLE
 #   BRIGHTNESS    #
 bindsym XF86MonBrightnessUp $BRIGHTNESS-INC-MINOR
 bindsym XF86MonBrightnessDown $BRIGHTNESS-DEC-MINOR
+bindsym $mod+XF86MonBrightnessUp $BRIGHTNESS-INC-MAJOR
+bindsym $mod+XF86MonBrightnessDown $BRIGHTNESS-DEC-MAJOR
 bindsym $mod+F6 $BRIGHTNESS-INC-MAJOR
 bindsym $mod+F5 $BRIGHTNESS-DEC-MAJOR
 #   SCREENSHOTS   #
@@ -390,7 +397,7 @@ set $MODE-SYSTEM "SYSTEM: autolock - config - hide - lock - reset - suspend - CL
 bindsym $mod+space mode $MODE-SYSTEM
 
 # Application launch mode
-set $MODE-OPEN "OPEN: color - file - image - paint - shell - text - video - web"
+set $MODE-OPEN "OPEN: color - desktop - file - image - paint - shell - text - video - web"
 bindsym $mod+apostrophe mode $MODE-OPEN
 
 # Workspace switch mode
@@ -441,18 +448,26 @@ mode $MODE-RESIZE
 # in order to achieve global key binding behavior:
     bindsym XF86AudioRaiseVolume $SOUND-VOLUME-INC-MINOR
     bindsym XF86AudioLowerVolume $SOUND-VOLUME-DEC-MINOR
+    bindsym $mod+XF86AudioRaiseVolume $SOUND-VOLUME-INC-MAJOR
+    bindsym $mod+XF86AudioLowerVolume $SOUND-VOLUME-DEC-MAJOR
     bindsym $mod+F3 $SOUND-VOLUME-INC-MAJOR
     bindsym $mod+F2 $SOUND-VOLUME-DEC-MAJOR
     bindsym XF86AudioMute $SOUND-MUTE-TOGGLE
+    bindsym $mod+XF86AudioMute $SOUND-MUTE-TOGGLE
     bindsym $mod+F1 $SOUND-MUTE-TOGGLE
     bindsym XF86AudioMicMute $MIC-TOGGLE
+    bindsym $mod+XF86AudioMicMute $MIC-TOGGLE
     bindsym $mod+F4 $MIC-TOGGLE
     bindsym XF86MonBrightnessUp $BRIGHTNESS-INC-MINOR
     bindsym XF86MonBrightnessDown $BRIGHTNESS-DEC-MINOR
+    bindsym $mod+XF86MonBrightnessUp $BRIGHTNESS-INC-MAJOR
+    bindsym $mod+XF86MonBrightnessDown $BRIGHTNESS-DEC-MAJOR
     bindsym $mod+F6 $BRIGHTNESS-INC-MAJOR
     bindsym $mod+F5 $BRIGHTNESS-DEC-MAJOR
     bindsym --release Print $SCREENSHOT-FULL
     bindsym --release Shift+Print $SCREENSHOT-SELECT
+    bindsym --release $mod+Print $SCREENSHOT-FULL-SHARE
+    bindsym --release $mod+Shift+Print $SCREENSHOT-SELECT-SHARE
 }
 
 # System control mode
@@ -504,18 +519,26 @@ mode $MODE-SYSTEM
 # in order to achieve global key binding behavior:
     bindsym XF86AudioRaiseVolume $SOUND-VOLUME-INC-MINOR
     bindsym XF86AudioLowerVolume $SOUND-VOLUME-DEC-MINOR
+    bindsym $mod+XF86AudioRaiseVolume $SOUND-VOLUME-INC-MAJOR
+    bindsym $mod+XF86AudioLowerVolume $SOUND-VOLUME-DEC-MAJOR
     bindsym $mod+F3 $SOUND-VOLUME-INC-MAJOR
     bindsym $mod+F2 $SOUND-VOLUME-DEC-MAJOR
     bindsym XF86AudioMute $SOUND-MUTE-TOGGLE
+    bindsym $mod+XF86AudioMute $SOUND-MUTE-TOGGLE
     bindsym $mod+F1 $SOUND-MUTE-TOGGLE
     bindsym XF86AudioMicMute $MIC-TOGGLE
+    bindsym $mod+XF86AudioMicMute $MIC-TOGGLE
     bindsym $mod+F4 $MIC-TOGGLE
     bindsym XF86MonBrightnessUp $BRIGHTNESS-INC-MINOR
     bindsym XF86MonBrightnessDown $BRIGHTNESS-DEC-MINOR
+    bindsym $mod+XF86MonBrightnessUp $BRIGHTNESS-INC-MAJOR
+    bindsym $mod+XF86MonBrightnessDown $BRIGHTNESS-DEC-MAJOR
     bindsym $mod+F6 $BRIGHTNESS-INC-MAJOR
     bindsym $mod+F5 $BRIGHTNESS-DEC-MAJOR
     bindsym --release Print $SCREENSHOT-FULL
     bindsym --release Shift+Print $SCREENSHOT-SELECT
+    bindsym --release $mod+Print $SCREENSHOT-FULL-SHARE
+    bindsym --release $mod+Shift+Print $SCREENSHOT-SELECT-SHARE
 }
 
 # Application launch mode
@@ -524,6 +547,10 @@ mode $MODE-OPEN
 # Color picker
     bindsym $mod+c exec $COLOR-PICKER
     bindsym c mode "default"; exec $COLOR-PICKER
+
+# Remote desktop
+    bindsym $mod+d exec $REMOTE-DESKTOP
+    bindsym d mode "default"; exec $REMOTE-DESKTOP
 
 # File browser
     bindsym $mod+f exec $FILE-MANAGER
@@ -572,18 +599,26 @@ mode $MODE-OPEN
 # in order to achieve global key binding behavior:
     bindsym XF86AudioRaiseVolume $SOUND-VOLUME-INC-MINOR
     bindsym XF86AudioLowerVolume $SOUND-VOLUME-DEC-MINOR
+    bindsym $mod+XF86AudioRaiseVolume $SOUND-VOLUME-INC-MAJOR
+    bindsym $mod+XF86AudioLowerVolume $SOUND-VOLUME-DEC-MAJOR
     bindsym $mod+F3 $SOUND-VOLUME-INC-MAJOR
     bindsym $mod+F2 $SOUND-VOLUME-DEC-MAJOR
     bindsym XF86AudioMute $SOUND-MUTE-TOGGLE
+    bindsym $mod+XF86AudioMute $SOUND-MUTE-TOGGLE
     bindsym $mod+F1 $SOUND-MUTE-TOGGLE
     bindsym XF86AudioMicMute $MIC-TOGGLE
+    bindsym $mod+XF86AudioMicMute $MIC-TOGGLE
     bindsym $mod+F4 $MIC-TOGGLE
     bindsym XF86MonBrightnessUp $BRIGHTNESS-INC-MINOR
     bindsym XF86MonBrightnessDown $BRIGHTNESS-DEC-MINOR
+    bindsym $mod+XF86MonBrightnessUp $BRIGHTNESS-INC-MAJOR
+    bindsym $mod+XF86MonBrightnessDown $BRIGHTNESS-DEC-MAJOR
     bindsym $mod+F6 $BRIGHTNESS-INC-MAJOR
     bindsym $mod+F5 $BRIGHTNESS-DEC-MAJOR
     bindsym --release Print $SCREENSHOT-FULL
     bindsym --release Shift+Print $SCREENSHOT-SELECT
+    bindsym --release $mod+Print $SCREENSHOT-FULL-SHARE
+    bindsym --release $mod+Shift+Print $SCREENSHOT-SELECT-SHARE
 }
 
 # Minor workspace mode
@@ -676,17 +711,25 @@ mode $MODE-WORKSPACE
 # in order to achieve global key binding behavior:
     bindsym XF86AudioRaiseVolume $SOUND-VOLUME-INC-MINOR
     bindsym XF86AudioLowerVolume $SOUND-VOLUME-DEC-MINOR
+    bindsym $mod+XF86AudioRaiseVolume $SOUND-VOLUME-INC-MAJOR
+    bindsym $mod+XF86AudioLowerVolume $SOUND-VOLUME-DEC-MAJOR
     bindsym $mod+F3 $SOUND-VOLUME-INC-MAJOR
     bindsym $mod+F2 $SOUND-VOLUME-DEC-MAJOR
     bindsym XF86AudioMute $SOUND-MUTE-TOGGLE
+    bindsym $mod+XF86AudioMute $SOUND-MUTE-TOGGLE
     bindsym $mod+F1 $SOUND-MUTE-TOGGLE
     bindsym XF86AudioMicMute $MIC-TOGGLE
+    bindsym $mod+XF86AudioMicMute $MIC-TOGGLE
     bindsym $mod+F4 $MIC-TOGGLE
     bindsym XF86MonBrightnessUp $BRIGHTNESS-INC-MINOR
     bindsym XF86MonBrightnessDown $BRIGHTNESS-DEC-MINOR
+    bindsym $mod+XF86MonBrightnessUp $BRIGHTNESS-INC-MAJOR
+    bindsym $mod+XF86MonBrightnessDown $BRIGHTNESS-DEC-MAJOR
     bindsym $mod+F6 $BRIGHTNESS-INC-MAJOR
     bindsym $mod+F5 $BRIGHTNESS-DEC-MAJOR
     bindsym --release Print $SCREENSHOT-FULL
     bindsym --release Shift+Print $SCREENSHOT-SELECT
+    bindsym --release $mod+Print $SCREENSHOT-FULL-SHARE
+    bindsym --release $mod+Shift+Print $SCREENSHOT-SELECT-SHARE
 }
 

@@ -1,10 +1,7 @@
 #!/bin/sh
 
-# Set stuff up
-source "${HOME}/.xsession" &
+# Load session settings.
+. "${HOME}/.xsession" &
 
-# Why is this necessary?
-xrdb "${HOME}/.Xresources" &
-
-# Start i3
+# Start window manager.
 exec i3

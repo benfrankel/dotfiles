@@ -1,7 +1,8 @@
 # Drop-in replacements
-alias ls='exa --group-directories-first --sort=Name --reverse --color-scale'
+alias ls='eza --group-directories-first --sort=Name --reverse --color-scale'
 alias view='bat'
 alias less='bat'
+alias vim='nvim'
 alias wc='tokei'
 
 # Better names
@@ -14,6 +15,7 @@ alias las='la --sort=size'
 alias ll='ls -al --header --extended --git --group --inode'
 alias lls='ll --sort=size'
 alias tree='ls --tree'
+alias t='tree --only-dirs'
 
 # Add color to grep
 alias grep='grep --color=auto'
@@ -40,7 +42,7 @@ v() {
 }
 
 # Reset terminal
-alias fix='stty sane;exec -l zsh;tput reset'
+alias fix='stty sane;exec -l zsh;tput reset;source "${HOME}/.xconfig"'
 
 # System information
 alias cpuhog="ps -eo args --sort %cpu | tail -n 1 | sed 's/\s.*$//'"
@@ -58,7 +60,6 @@ define() {
     sdcv --color "$@" | grep -E '   [1-9]+\.|^'
 }
 
-alias ec='emacsclient -c -t'
 alias edit="$EDITOR"
 
 detach() {
@@ -88,3 +89,4 @@ alias coinflip='echo -n Heads\\nTails | shuf | head -n 1'
 alias wisdom='fortune -a | cowsay -f turkey'
 alias dadjoke='curl -sS https://icanhazdadjoke.com | cowsay -f stegosaurus'
 alias pipes='pipes -r 0'
+alias song='ffplay -nodisp "$(find "${HOME}/data/music" -type f -not -path '\''*/\.*'\'' | shuf -n 1)"'

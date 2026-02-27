@@ -1,4 +1,5 @@
 # Show MOTD
+clear
 cat "${HOME}/.motd"
 
 # Fix VTE issue

@@ -6,7 +6,7 @@ set -eu
 
 SCROT='scrot %F_%s_$wx$h.png'
 NOTIFY='notify-send --urgency=low -t 2000'
-SCREENDIR='~/data/image/screens'
+SCREENDIR='~/data/image/screenshot'
 
 if [ $# -ge 1 ] && [ "$1" = "select" ]; then
     SCROT="${SCROT} --select"

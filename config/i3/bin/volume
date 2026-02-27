@@ -1,27 +1,26 @@
 #!/usr/bin/env bash
 
 set -eu
-# set -x
+set -x
 
 
-VOLUME="$(amixer -D pulse get Master | grep -Eom 1 '\[[[:digit:]]+%\]' | tr -d '[%]')"
+SINK="@DEFAULT_SINK@"
+VOLUME="$(pactl get-sink-volume "${SINK}" | grep -Eom 1 '[[:digit:]]+%' | head -n 1 | tr -d '%')"
 MIN_VOLUME=0
 MAX_VOLUME=500
 
 USAGE='Usage: volume [on | off | toggle | set {} | (up|down) [more | {}]]'
 
-SINK="$(pactl list sinks | grep 'Sink #' | cut -c 7-)"
-
 if [ $# -ge 1 ]; then
     case $1 in
         on)
-            amixer -qD pulse set Master unmute $VOLUME%
+            pactl set-sink-mute "${SINK}" off
             ;;
         off)
-            amixer -qD pulse set Master mute $VOLUME%
+            pactl set-sink-mute "${SINK}" on
             ;;
         toggle)
-            amixer -qD pulse set Master toggle $VOLUME%
+            pactl set-sink-mute "${SINK}" toggle
             ;;
         set)
             if [ $# -ne 2 ]; then
@@ -33,11 +32,11 @@ if [ $# -ge 1 ]; then
             VOLUME=$((VOLUME>MAX_VOLUME?MAX_VOLUME:VOLUME))
             VOLUME=$((VOLUME<MIN_VOLUME?MIN_VOLUME:VOLUME))
 
-            amixer -qD pulse set Master unmute
-            pactl set-sink-volume $SINK $VOLUME%
+            pactl set-sink-mute "${SINK}" off
+            pactl set-sink-volume "${SINK}" "${VOLUME}"%
             ;;
         up|down)
-            DELTA_VOLUME=1
+            DELTA_VOLUME=2
             if [ $# -ge 3 ]; then
                 echo $USAGE
                 exit 1
@@ -63,8 +62,8 @@ if [ $# -ge 1 ]; then
                     exit 1
             esac
 
-            pactl set-sink-volume $SINK $VOLUME%
-            amixer -qD pulse set Master unmute
+            pactl set-sink-mute "${SINK}" off
+            pactl set-sink-volume "${SINK}" "${VOLUME}"%
             ;;
         *)
             echo $USAGE
@@ -73,7 +72,7 @@ if [ $# -ge 1 ]; then
 
     pkill -SIGRTMIN+10 i3blocks
 else
-    if [ -n "$(amixer -D pulse get Master | grep '\[off\]')" ]; then
+    if [ -n "$(pactl get-sink-mute "${SINK}" | grep 'yes')" ]; then
         echo $VOLUME \(off\)
     else
         echo $VOLUME

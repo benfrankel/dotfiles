@@ -24,8 +24,6 @@ This repository is based on the following packages:
     - **Greeter** - [LightDM GTK+ Greeter](https://launchpad.net/lightdm-gtk-greeter)
 - **Window Manager** - [i3-gaps](https://github.com/Airblader/i3)
 - **Info Bar** - [i3bar](https://i3wm.org/i3bar) with [i3blocks](https://vivien.github.io/i3blocks)
-- **Screen Locker** - [light-locker](https://github.com/the-cavalry/light-locker)
-    - **Inactivity Locker** - [xautolock](https://freecode.com/projects/xautolock)
 - **Compositor** - [Picom](https://github.com/yshui/picom)
 - **Notification Daemon** - [Dunst](https://dunst-project.org)
 - **Application Launcher** - [Rofi](https://davedavenport.github.io/rofi)
@@ -34,17 +32,15 @@ This repository is based on the following packages:
 ### Applications
 
 - **Terminal** - [rxvt](http://rxvt.sourceforge.net)
-    - **Shell** - [Zsh](https://zsh.sourceforge.net)
-- **Text Editor** - [Emacs](https://gnu.org/software/emacs)
-- **IDEs**
-    - **Python** - [Pycharm Community Edition](https://jetbrains.com/pycharm)
+- **Shell** - [Zsh](https://zsh.sourceforge.net)
+- **Text Editor** - [Neovim](https://neovim.io)
+- **IDE** - [VS Code](https://code/visualstudio.com)
 - **Web Browser** - [Firefox](https://www.mozilla.org/en-US/firefox/)
 - **File Manager** - [Thunar](https://git.xfce.org/xfe/thunar)
 - **Multimedia Player** - [VLC](https://videolan.org/vlc)
 - **Image Editor** - [GIMP](https://gimp.org)
 - **Drawing** - [Krita](https://krita.org)
 - **Vector Editor** - [Inkscape](https://inkscape.org/en/)
-- **Partition Manager** - [GParted](https://gparted.org)
 
 Plus anything else I have installed.
 
@@ -65,13 +61,12 @@ Clone the repository with `git clone https://github.com/BenFrankel/dotfiles ~/.d
 
 ### Setup
 
-Run the command `~/.dotfiles/script/dot get`.
+Run the command `~/.dotfiles/script/dotctl get`.
 
 This will automatically do the following:
 
 - Get the most recent version of this repository
-- **NOT DONE**: Set LightDM as your display manager and greeter
-- **NOT DONE**: Set i3-gaps as your default X window manager
+- **NOT DONE**: Set i3-wm as your default X window manager
 - Set up links in your filesystem to activate the configuration files
 - Set up links in your `~/bin/` directory to activate the scripts
 - Sync your system's packages with the package list
@@ -80,9 +75,9 @@ This will automatically do the following:
     - Install missing packages from the list
 - Change your default (login) shell to Zsh
 
-The command also saves any files it replaces in `~/.dotfiles/backup/`, and a list of your packages pre-install in `~/.dotfiles/pack/`. Use `dot restore` to restore from backup.
+The command also saves any files it replaces in `~/.dotfiles/backup/`, and a list of your packages pre-install in `~/.dotfiles/pack/`. Use `dotctl restore` to restore from backup.
 
-You can also use `dot get` to update to the newest version.
+You can also use `dotctl get` to update to the newest version.
 
 ### Wallpaper
 
@@ -92,11 +87,6 @@ To set your wallpaper, move an image to `~/data/image/screens/` and activate it 
 ## Key Bindings
 
 Customized key bindings should mostly be backwards compatible with the defaults, except where the defaults are particularly clumsy.
-
-
-### Emacs
-
-This section isn't written yet.
 
 
 ### i3

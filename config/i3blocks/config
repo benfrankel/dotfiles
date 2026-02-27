@@ -24,14 +24,14 @@ interval=30
 color=#2A353B
 
 [date]
-label= 
+label=    
 interval=60
 
 [separator]
 full_text=
 
 [time]
-label= 
+label=    
 interval=1
 
 [separator]
@@ -44,13 +44,21 @@ interval=2
 full_text=
 
 [cpu_usage]
-label= 
+label=  
+interval=5
+
+[separator]
+full_text=
+
+[mem_usage]
+label=  
 interval=5
 
 [separator]
 full_text=
 
 [battery]
+instance=0
 signal=11
 interval=60
 
@@ -58,7 +66,7 @@ interval=60
 full_text=
 
 [mediaplayer]
-instance=spotify
+instance=mpd
 signal=10
 
 [separator]

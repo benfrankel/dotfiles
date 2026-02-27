@@ -44,46 +44,45 @@ $acpi = <ACPI>;
 close(ACPI);
 
 # Fail on unexpected output
-if ($acpi !~ /: (\w+), (\d+)%/) {
+if ($acpi !~ /: ([^,]+), (\d+)%/) {
 	die "$acpi\n";
 }
 
 $status = $1;
 $percent = $2;
-
 if ($percent >= 99) {
-	$short_text = "";
+    $short_text = " ";
 } elsif ($percent >= 80) {
-	$short_text = "";
+	$short_text = " ";
 } elsif ($percent >= 60) {
-	$short_text = "";
+	$short_text = " ";
 	$color = "#FCE94F";
 } elsif ($percent >= 40) {
-	$short_text = "";
+	$short_text = " ";
 	$color = "#FFD62F";
 } elsif ($percent >= 15) {
-	$short_text = "";
+	$short_text = " ";
 	$color = "#FFA12F";
 } else { 
-	$short_text = "";
+	$short_text = " ";
 	$color = "#FF2236";
 }
 
 if ($status eq 'Discharging') {
-	$short_text .= '';
+	$short_text .= ' ';
         if ($percent <= 2) {
                 system("systemctl hibernate");
         } elsif ($percent <= 5) {
                 if ($prev_percent > 5 or $prev_status ne 'Discharging') {
                         system("notify-send --urgency=critical 'Battery: ' 'Battery is critical! ($percent%)\nAuto hibernate at 2%'");
                 }
-                $short_text .= '';
+                $short_text .= ' ';
                 $urgent = 1;
         } elsif ($percent <= 10 and ($prev_percent > 10 or ($prev_percent > 5 and $prev_status ne 'Discharging'))) {
 		system("notify-send --urgency=critical 'Battery: ' 'Battery is very low! ($percent%)\nAuto hibernate at 2%'");
 	}
 } elsif ($status eq 'Charging') {
-        $short_text .= '';
+        $short_text .= ' ';
 }
 
 if ($acpi =~ /(\d\d:\d\d):/) {

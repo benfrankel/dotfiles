@@ -1,3 +1,5 @@
+Xft.dpi:  96
+
 ! SCROLLING !
 URxvt.scrollBar: false
 URxvt.saveLines: 8192
@@ -9,7 +11,7 @@ URxvt.scrollTtyKeypress: true
 URxvt.cursorBlink: true
 
 ! FONT !
-URxvt.font: xft:Ubuntu Mono:pixelsize=14
+URxvt.font: xft:Hack Nerd Font:pixelsize=12
 
 ! MISC !
 URxvt.urgentOnBell: true
